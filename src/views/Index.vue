@@ -2,14 +2,15 @@
 <v-app>
   <v-main>
   <!-- upper search part -->
-  <div class="upper">
-<v-container >
-<AddWordSimple ></AddWordSimple>
-</v-container>
+
+<div class="upper">
+  <v-container >
+  <AddWordSimple ></AddWordSimple>
+  </v-container>
 </div>
 <!-- card list part -->
 <v-container class="cardList">
-<Card v-for="card in cardList" :key="card.id" :card="card" ></Card>
+  <Card v-for="card in cardList" :key="card.id" :card="card" ></Card>
 </v-container>
 
 
@@ -51,6 +52,9 @@ export default {
     top: 250px;
     left: 20%
 }
+
+  
+
 .upper {
   width:100%;
   // background: black;
@@ -58,10 +62,13 @@ export default {
   top: 0;
   height: 400px;
 }
+
 .v-main {
   padding:0;
 }
+
 .topAdd {
   padding-top: 100px;
 }
+
 </style>

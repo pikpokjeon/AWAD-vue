@@ -50,6 +50,7 @@
     box-shadow: 0 35px 144px -79px rgba(0, 0, 0, 0.65);
     padding: 2% 2%;
     border: 1px solid #f1f1f1;
+    
   .button-list{
     span{
 
