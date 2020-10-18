@@ -2,13 +2,13 @@
   <v-hover>
     <template v-slot:default="{ hover }">
       <v-card class="mx-auto" max-width="344">
+        <div v-if="isImportant" class="star-it"></div>
         <dl class="card">
-          <div class="button-list">
-            <span>1</span>
-            <span>2</span>
-          </div>
+          <!-- <div class="right-box">
+          <v-icon color="rgb(193 192 187)" class="star" aria-hidden="false"> mdi-star-box   </v-icon>                
+          </div> -->
+          <dt class="word" :class="{'important' : isImportant}">{{ card.theword }}</dt>
 
-          <dt class="word">{{ card.theword }}</dt>
           <dd>
             <ol>
               <li>
@@ -45,6 +45,11 @@
             <div class="icon-button">
             <v-icon  aria-hidden="false"> mdi-file-edit  </v-icon>              
             </div>
+            <div class="icon-button">
+
+          <v-icon class="star" @click="setImportant()"  aria-hidden="false"> mdi-star-box-outline    </v-icon>                
+            </div>
+
             </div>
           </v-overlay>
         </v-fade-transition>
@@ -58,6 +63,7 @@ export default {
   data() {
     return {
       overlay: false,
+      isImportant:false,
     };
   },
   computed: {
@@ -70,12 +76,20 @@ export default {
 
     },
     edit() {
-      
-    }
+
+    },
+    setImportant() {
+      this.isImportant = !this.isImportant;  
+
+      }
+    
   }
 };
 </script>
 <style lang="scss" scoped>
+.star-it{
+  position:absolute;
+}
 .v-card {
   margin: 20px auto !important;
 }
@@ -87,44 +101,64 @@ export default {
   // background: white;
   // margin: ;
   // box-shadow: 0 35px 144px -79px rgba(0, 0, 0, 0.65);
-  padding: 1.5vw;
-  // border: 1px solid #f1f1f1;
+  padding:1.5vw 1.5vw 1.5vw 2vw;
+      min-width: 350px;
+    min-height: 250px;
 
+ .right-box{
+   float: right;
+
+ }
 
   .button-list {
     span {
     }
   }
+  .important {
+    border-left: 5px solid;
+  }
   .word {
-        font-size: 1.5rem;
+    font-size: 1.5rem;
     font-weight: 500;
+    color: #4d42a7;
   }
   dd {
   }
 
 
   ol {
-    padding-left: 1vw;
+    padding-left: 0;
     list-style: none;
     li {
       .trans {
+        font-size: 0.9rem;
+            color: #848b93;
       }
     }
 
     .meanings {
           list-style: none;
-    border-left: 1px solid #c3c5c7;
-    margin-bottom: 10px;
+    margin-bottom: 18px;
+    padding-left: 0;
       
       .description {
+        font-size: 1rem;
       }
       .example {
-            color: #5f6973;
-             white-space: pre-wrap;
+                color: #5f6973;
+    white-space: pre-wrap;
+    border-left: 1px solid #c3c5c7;
+    padding-left: 0.7vw;
+    padding-top: 0.3vw;
+        font-size: 0.9rem;
       }
     }
     .tags {
+          padding-left: 1vw;
+    list-style: none;
       li {
+        display: inline-block;
+    color: #5f59db;
       }
     }
   }
