@@ -3,7 +3,7 @@
   <v-main>
   <!-- upper search part -->
 
-<div class="upper">
+<div class="upper gradient">
   <v-container >
   <AddWordSimple ></AddWordSimple>
   </v-container>
@@ -43,14 +43,11 @@ export default {
 .cardList {
     width: 90%;
     display: flex;
-    // border: 1px solid;
-    margin: auto;
-    align-items: baseline;
-    justify-content: center;
-        flex-wrap: wrap;
-            position: absolute;
-    top: 250px;
-    left: 20%
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    position: relative;
+    top: -110px;
 }
 
   
@@ -58,13 +55,14 @@ export default {
 .upper {
   width:100%;
   // background: black;
-  background: linear-gradient(144deg, rgba(23,64,190,1) 0%, rgba(107,57,194,1) 75%, rgba(162,53,196,1) 93%, rgba(220,0,255,1) 100%);
+  // background: linear-gradient(144deg, rgba(23,64,190,1) 0%, rgba(107,57,194,1) 75%, rgba(162,53,196,1) 93%, rgba(220,0,255,1) 100%);
   top: 0;
   height: 400px;
 }
 
+
 .v-main {
-  padding:0;
+  padding:0 !important;
 }
 
 .topAdd {

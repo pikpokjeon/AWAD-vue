@@ -3,7 +3,7 @@ import {store} from './store'
 import {router} from './routes'
 import App from './App.vue'
 import vuetify from './plugins/vuetify';
-import { mdiAccount } from '@mdi/js'
+import { mdiAccount,mdiFileEdit ,mdiDeleteForever  } from '@mdi/js'
 
 Vue.config.productionTip = false
 
@@ -12,5 +12,7 @@ new Vue({
   store,
   router,
   mdiAccount,
+  mdiFileEdit,
+  mdiDeleteForever  ,
   render: h => h(App)
 }).$mount('#app')

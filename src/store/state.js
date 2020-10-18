@@ -10,8 +10,8 @@ export default {
     created: '',
   },
   meanings: {
+    description: '',
     examples: [],
-    description: []
   },
   userList: [],
   user: {

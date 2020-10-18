@@ -2,7 +2,7 @@
   <v-app id="app">
     <v-app-bar
       app
-      color="primary"
+      color="rgb(63 81 181 / 23%)"
       dark
     >
       <div class="d-flex align-center">
@@ -38,3 +38,37 @@ export default {
   }),
 };
 </script>
+<style lang="scss">
+.v-main {
+  padding:0 !important;
+}
+.gradient {
+    background: linear-gradient(222deg, #8d18ff, #18ffaf);
+    background-size: 400% 400%;
+
+    -webkit-animation: bg 30s ease infinite;
+    -moz-animation: bg 30s ease infinite;
+    animation: bg 30s ease infinite;
+}
+
+@-webkit-keyframes bg {
+    0%{background-position:0% 78%}
+    50%{background-position:100% 23%}
+    100%{background-position:0% 78%}
+}
+@-moz-keyframes bg {
+    0%{background-position:0% 78%}
+    50%{background-position:100% 23%}
+    100%{background-position:0% 78%}
+}
+@keyframes bg {
+      0%{background-position:0% 78%}
+    50%{background-position:100% 23%}
+    100%{background-position:0% 78%}
+}
+
+
+
+
+
+</style>

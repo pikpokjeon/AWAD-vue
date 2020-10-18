@@ -4,7 +4,7 @@
       cols="12"
       sm="6"
     >
-    <h2>What have you learn?</h2>
+    <h2>Any new word?</h2>
     <v-text-field label="Learn something new?" 
     solo
     placeholder="New Word"></v-text-field>
@@ -30,7 +30,7 @@ export default {
 .row {
     justify-content: center;
     align-items: center;
-    padding-top: 50px;
+    padding-top: 100px;
 }
 h2{
   font-size: 20px;
