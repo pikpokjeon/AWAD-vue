@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # AWAD-vue
 Web interface for AWAD a telegram bot that you can add words and practicing memorization.
 =======
@@ -26,4 +26,4 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
->>>>>>> master
+
