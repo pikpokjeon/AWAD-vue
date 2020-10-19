@@ -19,7 +19,7 @@
   elevation="3"
   large
 >Add</v-btn>
-<NewCardForm class="form" v-if="isClicked">
+<NewCardForm class="form" v-if="isOpenForm" @closeForm="checkIfClose">
 
 </NewCardForm>
 </v-col>
@@ -33,12 +33,16 @@ export default {
   },
   data(){
     return{
-      isClicked:false,
+      isOpenForm:false,
     }
   },
   methods:{
     addWord() {
-      this.isClicked = !this.isClicked;
+      this.isOpenForm = !this.isOpenForm;
+    },
+    checkIfClose(e) {
+      this.isOpenForm = e ;
+
     }
   }
   
