@@ -10,7 +10,14 @@
 <div class="line">
     <v-text-field label="Transcription"></v-text-field>
   </div>
+<div class="line">
+  <div class="expandable">
+<Meaning></Meaning>
+ <div class="icon-button-wrapper"><v-icon @click="closeForm()" aria-hidden="false"> mdi-close-thick</v-icon></div>
 
+  </div>
+
+</div>
 
 </div>
 </div>
@@ -19,12 +26,16 @@
    </v-fade-transition>
 </template>
 <script>
+import Meaning from './Meaning';
 export default {
   props: ["card"],
   data() {
     return {
       isCloseClicked: false,
     };
+  },
+  components: {
+    Meaning,
   },
   computed: {
     // computeEx() {
@@ -57,7 +68,13 @@ section {
     padding: 5vw;
 
 
-      .line{}
+      .line{
+
+        .expandable{
+    display: flex;
+    justify-content: space-between;
+        }
+      }
     }
 }
 .icon-button-wrapper {
