@@ -43,7 +43,7 @@ export default {
   padding:0 !important;
 }
 .gradient {
-    background: linear-gradient(222deg, #8d18ff, #18ffaf);
+    background:linear-gradient(222deg,#18f1c9,#1085bd, #18ffbf);
     background-size: 400% 400%;
 
     -webkit-animation: bg 30s ease infinite;
