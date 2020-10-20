@@ -17,6 +17,7 @@
 
 <script>
 export default {
+  props:['id'],
   data() {
     return {
       isAdded: false,
@@ -24,10 +25,11 @@ export default {
   },
   methods:{
     addEx(){
-      this.$emit('addEx', true)
+      this.$emit('addEx', this.id);
+      console.log('example adding: ', this.id);
     },
     removeEx(){
-
+      this.$emit('removeEx',this.id);
     }
   }
 };

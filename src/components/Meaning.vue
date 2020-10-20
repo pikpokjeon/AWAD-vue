@@ -14,7 +14,7 @@
       <v-icon @click="closeForm()" aria-hidden="false"> mdi-plus-circle</v-icon>
     </div>
   </div>
-   <Example  @addEx="expandEx"   v-for="(example, index) in examples" :key="`ex_${index}`"></Example>
+   <Example  @addEx="expandEx" @removeEx="removeEx"  v-for="(example, index) in examples" :id="index" :key="`ex_${index}`"></Example>
   </div>
 </template>
 
@@ -23,8 +23,8 @@ import Example from './Example';
 export default {
   data() {
     return {
-      examples: [1,],
-      descCount: [1,],
+      examples: ['s',],
+      descCount: ['s',],
       addedDesc: false,
     };
   },
@@ -36,9 +36,14 @@ export default {
       this.descCount.push(1);
     },
     expandEx(e) {
-      if(e){
-        this.examples.push(1);
-      }
+   
+        this.examples.push(e);
+     
+    },
+    removeEx(e) {
+      
+        this.examples.splice(e,1);
+      
     }
   }
 };
