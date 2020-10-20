@@ -1,6 +1,7 @@
 <template>
 <div>
     <div class="expandable" > 
+      <span>{{`${index + 1})`}}</span>
       <v-text-field
       v-model="value"
         label="Example"
@@ -18,7 +19,7 @@
 
 <script>
 export default {
-  props:['id', 'added','count'],
+  props:['id', 'added','count','index'],
   data() {
     return {
       isAdded: false,

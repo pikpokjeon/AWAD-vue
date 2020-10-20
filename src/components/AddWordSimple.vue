@@ -66,5 +66,6 @@ h2{
     z-index: 99;
     top: 0;
     left: 0;
+    overflow-y: scroll;
 }
 </style>

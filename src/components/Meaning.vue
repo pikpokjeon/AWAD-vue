@@ -1,27 +1,31 @@
 <template>
 <div>
+  <div  v-for="(desc, index) in descCount"
+        :key="`desc_${index + 1}`">
   <div class="expandable"  
-  v-for="(desc, index) in descCount"
-        :key="`desc_${index}`">
+>
     <div class="inputs">
+      <span>{{`${index + 1}.`}}</span>
       <v-text-field label="Description"></v-text-field>
      
     </div>
     <div class="icon-button-wrapper">
-      <v-icon class="description-add" @click="addDesc()" aria-hidden="false">
+      <v-icon v-if="index == 0" class="description-add" @click="addDesc()" aria-hidden="false">
         mdi-plus-circle</v-icon
       >     
-      <v-icon @click="closeForm()" aria-hidden="false"> mdi-plus-circle</v-icon>
+      <v-icon @click="removeDesc()" aria-hidden="false"> mdi-minus-circle-outline</v-icon>
     </div>
   </div>
    <Example  @addEx="expandEx" @removeEx="removeEx"  v-for="(example, index) in examples"
     :added="isExAdded" :count="examples.length"
-    :id="example" :key="`ex_${index}`"></Example>
+    :id="example" :index="index" :key="`ex_${index}`"></Example>
+  </div>
   </div>
 </template>
 
 <script>
 import Example from './Example';
+// import {mapState} from 'vuex';
 export default {
   data() {
     return {
@@ -34,6 +38,15 @@ export default {
     Example,
   },
   computed:{
+        isFirst(){
+      let val;
+      if(this.id == 's'){
+        val = true;
+      }else{
+        val = false;
+      }
+      return val;
+    },
     isExAdded(){
     if(this.examples.length > 1){
       return true
@@ -46,6 +59,9 @@ export default {
   methods:{
     addDesc(){
       this.descCount.push(1);
+    },
+    removeDesc(){
+
     },
     expandEx(e) {
    

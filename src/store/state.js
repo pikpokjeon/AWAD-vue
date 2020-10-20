@@ -9,7 +9,7 @@ export default {
     meanings: [],
     created: '',
   },
-  meanings: {
+  meaning: {
     description: '',
     examples: [],
   },
