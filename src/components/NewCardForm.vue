@@ -1,37 +1,38 @@
 <template>
-   <v-fade-transition class="ee">
-<section>
-<div class="form-card">
-  <div class="icon-button-wrapper"><v-icon @click="closeForm()" aria-hidden="false"> mdi-close-thick</v-icon></div>
-<div class="form-inside">
-  <div class="line">
-    <v-text-field label="Word"></v-text-field>
-  </div>
-<div class="line">
-    <v-text-field label="Transcription"></v-text-field>
-  </div>
-<div class="line">
-  <div class="expandable">
-<Meaning></Meaning>
- <div class="icon-button-wrapper"><v-icon @click="closeForm()" aria-hidden="false"> mdi-close-thick</v-icon></div>
-
-  </div>
-
-</div>
-
-</div>
-</div>
-
-</section>
-   </v-fade-transition>
+  <v-fade-transition class="ee">
+    <section>
+      <div class="form-card">
+        <div class="icon-button-wrapper">
+          <v-icon @click="closeForm()" aria-hidden="false">
+            mdi-close-thick</v-icon
+          >
+        </div>
+        <div class="form-inside">
+          <div class="line">
+            <v-text-field label="Word"></v-text-field>
+          </div>
+          <div class="line">
+            <v-text-field label="Transcription"></v-text-field>
+          </div>
+          <div class="line">
+           
+              <Meaning></Meaning>
+              
+           
+          </div>
+        </div>
+      </div>
+    </section>
+  </v-fade-transition>
 </template>
 <script>
 import Meaning from './Meaning';
 export default {
-  props: ["card"],
+  props: ['card'],
   data() {
     return {
       isCloseClicked: false,
+
     };
   },
   components: {
@@ -39,15 +40,14 @@ export default {
   },
   computed: {
     // computeEx() {
-      // const example = document.getElementById('ex_1')
+    // const example = document.getElementById('ex_1')
     // }
   },
   methods: {
-    closeForm(){
-      this.$emit('closeForm',this.isCloseClicked);
-    }
-
-  }
+    closeForm() {
+      this.$emit('closeForm', this.isCloseClicked);
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -58,7 +58,6 @@ section {
 .form-card {
     background: white;
     min-width: 650px;
-    height: 500px;
     z-index: 999;
     top: 5vw;
     position: absolute;
@@ -71,8 +70,27 @@ section {
       .line{
 
         .expandable{
+    // display: flex;
+    // justify-content: space-between;
+
+    .icon-button-wrapper {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 30px;
+
+      .v-icon{
+
+    padding: 0 0 15px 0;
+    cursor: pointer;
+    font-size: 30px;
+    color: #bccbce;
+
+
+      }
+
+      .description-add{
+            color: #84c8d6;
+      }
         }
       }
     }
@@ -80,12 +98,12 @@ section {
 .icon-button-wrapper {
   display: flex;
       justify-content: flex-end;
-      
+
       .v-icon{
             padding: 10px;
             cursor: pointer;
 
       }
 }
-
+}
 </style>
