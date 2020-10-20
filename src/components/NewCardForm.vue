@@ -9,10 +9,10 @@
         </div>
         <div class="form-inside">
           <div class="line">
-            <v-text-field label="Word"></v-text-field>
+            <v-text-field label="Word" solo></v-text-field>
           </div>
           <div class="line">
-            <v-text-field label="Transcription"></v-text-field>
+            <v-text-field label="Transcription" solo></v-text-field>
           </div>
           <div class="line">
            

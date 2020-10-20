@@ -5,15 +5,16 @@
   <div class="expandable"  
 >
     <div class="inputs">
-      <span>{{`${index + 1}.`}}</span>
-      <v-text-field label="Description"></v-text-field>
+      <!-- <span>{{`${index + 1}.`}}</span> -->
+      <v-text-field label="Description" solo></v-text-field>
      
     </div>
     <div class="icon-button-wrapper">
-      <v-icon v-if="index == 0" class="description-add" @click="addDesc()" aria-hidden="false">
+      <v-icon v-if="index == 0" class="description" @click="addDesc()" aria-hidden="false">
         mdi-plus-circle</v-icon
       >     
-      <v-icon @click="removeDesc()" aria-hidden="false"> mdi-minus-circle-outline</v-icon>
+      <v-icon v-else class="description" @click="removeDesc()" aria-hidden="false"> mdi-minus-circle</v-icon>
+      <!-- <v-icon v-else class="description" @click="removeDesc()" aria-hidden="false"> mdi-minus-circle-outline</v-icon> -->
     </div>
   </div>
    <Example  @addEx="expandEx" @removeEx="removeEx"  v-for="(example, index) in examples"
@@ -83,24 +84,31 @@ div {
 .expandable {
   display: flex;
   justify-content: space-between;
+   span{
+      padding-right: 5px;
+    }
 
   .inputs {
-    display: block;
+        display: flex;
+    align-items: center;
   }
 
   .icon-button-wrapper {
     display: flex;
     flex-wrap: wrap;
-    width: 30px;
+    width: 37px;
+    padding: 5px;
+    align-items: center;
+    height: 50px;
 
     .v-icon {
       padding: 0 0 15px 0;
       cursor: pointer;
-      font-size: 30px;
+      font-size: 40px;
       color: #bccbce;
     }
 
-    .description-add {
+    .description {
       color: #84c8d6;
     }
   }

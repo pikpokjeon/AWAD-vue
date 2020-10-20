@@ -1,15 +1,16 @@
 <template>
 <div>
     <div class="expandable" > 
-      <span>{{`${index + 1})`}}</span>
+      <!-- <span>{{`${index + 1})`}}</span> -->
       <v-text-field
       v-model="value"
-        label="Example"
+       
+        :placeholder="`${index + 1})Example`"
       ></v-text-field>
     
     <div class="icon-button-wrapper">
       <v-icon v-if="isFirst" class="description-add" @click="addEx()" aria-hidden="false">
-        mdi-plus-circle</v-icon
+        mdi-plus-circle-outline</v-icon
       >      
       <v-icon v-else-if="added" @click="removeEx()" aria-hidden="false"> mdi-minus-circle-outline </v-icon>
     </div>
@@ -61,11 +62,19 @@ div {
   width: 100%;
 }
 .expandable {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+        padding-left: 10px;
+    border-left: 1px solid #bccbce;
+
+    span{
+      padding-right: 5px;
+    }
 
   .inputs {
-    display: block;
+        display: flex;
+    align-items: center;
   }
 
   .icon-button-wrapper {
@@ -76,12 +85,12 @@ div {
     .v-icon {
       padding: 0 0 15px 0;
       cursor: pointer;
-      font-size: 30px;
-      color: #bccbce;
+      font-size: 35px;
+      color: #bccbce7a;
     }
 
     .description-add {
-      color: #84c8d6;
+          color: #84c8d694;
     }
   }
 }
