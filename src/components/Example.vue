@@ -2,14 +2,15 @@
 <div>
     <div class="expandable" > 
       <v-text-field
+      v-model="value"
         label="Example"
       ></v-text-field>
     
     <div class="icon-button-wrapper">
-      <v-icon class="description-add" @click="addEx()" aria-hidden="false">
+      <v-icon v-if="isFirst" class="description-add" @click="addEx()" aria-hidden="false">
         mdi-plus-circle</v-icon
       >      
-      <v-icon @click="removeEx()" aria-hidden="false"> mdi-minus-circle-outline </v-icon>
+      <v-icon v-else-if="added" @click="removeEx()" aria-hidden="false"> mdi-minus-circle-outline </v-icon>
     </div>
 </div>
   </div>
@@ -17,19 +18,38 @@
 
 <script>
 export default {
-  props:['id'],
+  props:['id', 'added','count'],
   data() {
     return {
       isAdded: false,
+      value:'',
     };
+  },
+  computed:{
+    computedInfo(){
+      const info = {idx:this.id, value: this.value};
+      return info;
+    },
+    isFirst(){
+      let val;
+      if(this.id == 's'){
+        val = true;
+      }else{
+        val = false;
+      }
+      return val;
+    }
+
   },
   methods:{
     addEx(){
-      this.$emit('addEx', this.id);
-      console.log('example adding: ', this.id);
+      this.$emit('addEx', this.computedInfo);
+      console.log('example adding: ', this.computedInfo);
     },
     removeEx(){
-      this.$emit('removeEx',this.id);
+      this.$emit('removeEx',this.computedInfo);
+      console.log('example removing: ', this.computedInfo);
+
     }
   }
 };
