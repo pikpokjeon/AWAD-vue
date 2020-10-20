@@ -5,34 +5,41 @@
         :key="`desc_${index}`">
     <div class="inputs">
       <v-text-field label="Description"></v-text-field>
-      <v-text-field
-        v-for="(example, index) in examples"
-        :key="`ex_${index}`"
-        label="Example"
-      ></v-text-field>
+     
     </div>
     <div class="icon-button-wrapper">
       <v-icon class="description-add" @click="addDesc()" aria-hidden="false">
         mdi-plus-circle</v-icon
-      >
+      >     
       <v-icon @click="closeForm()" aria-hidden="false"> mdi-plus-circle</v-icon>
     </div>
   </div>
+   <Example  @addEx="expandEx"   v-for="(example, index) in examples" :key="`ex_${index}`"></Example>
   </div>
 </template>
 
 <script>
+import Example from './Example';
 export default {
   data() {
     return {
       examples: [1,],
       descCount: [1,],
+      addedDesc: false,
     };
+  },
+  components: {
+    Example,
   },
   methods:{
     addDesc(){
       this.descCount.push(1);
     },
+    expandEx(e) {
+      if(e){
+        this.examples.push(1);
+      }
+    }
   }
 };
 </script>

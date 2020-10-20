@@ -3,7 +3,7 @@ import {store} from './store'
 import {router} from './routes'
 import App from './App.vue'
 import vuetify from './plugins/vuetify';
-import { mdiAccount,mdiFileEdit ,mdiStarBoxOutline ,mdiDeleteForever, mdiStarBox ,mdiCloseThick,mdiPlusCircle  } from '@mdi/js'
+import { mdiAccount,mdiFileEdit,mdiMinusCircleOutline  ,mdiStarBoxOutline ,mdiDeleteForever, mdiStarBox ,mdiCloseThick,mdiPlusCircle  } from '@mdi/js'
 
 Vue.config.productionTip = false
 
@@ -18,5 +18,6 @@ new Vue({
   mdiCloseThick,
   mdiDeleteForever  ,
   mdiPlusCircle,
+  mdiMinusCircleOutline ,
   render: h => h(App)
 }).$mount('#app')
