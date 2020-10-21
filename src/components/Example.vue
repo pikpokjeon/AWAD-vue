@@ -1,15 +1,16 @@
 <template>
 <div>
-    <div class="expandable"  v-for="(example, index) in el" :key="`ex_${index}`"> 
+    <div class="expandable"> 
       <!-- <span>{{`${index + 1})`}}</span> -->
       <v-text-field
-      v-model="value"
+              :id="`ex${exIndex}-from-desc${index}`"
+      @change="exToList(exIndex)"
        
-        :placeholder="`${index + 1})Example`"
+        :placeholder="`${exIndex + 1})Example`"
       ></v-text-field>
     
     <div class="icon-button-wrapper">
-      <v-icon v-if="index == 0" class="description-add" @click="addEx()" aria-hidden="false">
+      <v-icon v-if="exIndex == 0" class="description-add" @click="addEx()" aria-hidden="false">
         mdi-plus-circle-outline</v-icon
       >      
       <v-icon v-else @click="removeEx()" aria-hidden="false"> mdi-minus-circle-outline </v-icon>
@@ -19,8 +20,10 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
-  props:['id', 'isFirst','count','index','el'],
+  props:['id', 'isFirst','count','index','exIndex'],
   data() {
     return {
       isAdded: false,
@@ -32,18 +35,11 @@ export default {
       const info = {idx:this.id, value: this.value};
       return info;
     },
-    isFirstEx(){
-      let val;
-      if(this.index == 0){
-        val = true;
-      }else{
-        val = false;
-      }
-      return val;
-    }
 
   },
   methods:{
+    ...mapActions(['computeExample']),
+
     addEx(){
       this.$emit('addEx', this.computedInfo);
       console.log('example adding: ', this.computedInfo);
@@ -52,7 +48,16 @@ export default {
       this.$emit('removeEx',this.computedInfo);
       console.log('example removing: ', this.computedInfo);
 
-    }
+    },
+     exToList(exIndex) {
+      const newEx = document.getElementById(`ex${exIndex}-from-desc${this.index}`).value;
+
+      const param = newEx ? { descIndex: this.index, index: exIndex, status: 'add', example: newEx } : { descIndex: this.index, index: exIndex, status: 'remove', example: newEx }
+        this.computeExample(param);
+      
+      // console.log(`${this.$refs.desc}-${index}`.value);
+    
+  },
   }
 };
 </script>

@@ -32,13 +32,15 @@
         </div>
       </div>
       <Example
+              v-for="(el, exIndex) in examples"
+              :id="`ex_${exIndex + 1}`"
+              :key="`ex_${exIndex + 1}`"
         @addEx="expandEx"
         @removeEx="removeEx"
         :isFirst="isFirst"
         :count="examples.length"
-        :id="`ex_${index}`"
+        :exIndex="exIndex"
         :index="index"
-        :el="examples"
       ></Example>
     </div>
   </div>
@@ -94,13 +96,10 @@ export default {
     },
     descToList(index) {
       const newDesc = document.getElementById(`desc${index}`).value;
-      if (newDesc != '') {
-        const param = { index: index, status: 'add', description: newDesc };
+
+      const param = newDesc ? { index: index, status: 'add', description: newDesc } : { index: index, status: 'remove', description: newDesc }
         this.computeDescription(param);
-      } else {
-        const param = { index: index, status: 'remove', description: newDesc };
-        this.computeDescription(param);
-      }
+      
       // console.log(`${this.$refs.desc}-${index}`.value);
     },
   },

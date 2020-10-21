@@ -13,8 +13,11 @@ export default {
       .catch( err => console.log(err))
   },
 
-  
+
   computeDescription ( {commit}, e ) {
     commit('SET_DESC', e)
+  },
+  computeExample ( {commit}, e ) {
+    commit('SET_EX', e)
   }
 }
