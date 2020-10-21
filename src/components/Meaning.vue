@@ -15,7 +15,7 @@
           <v-icon
             v-if="index == 0"
             class="description"
-            @click="addDesc(index)"
+            @click="addDesc()"
             aria-hidden="false"
           >
             mdi-plus-circle</v-icon
@@ -50,7 +50,7 @@
 import Example from './Example';
 import { mapState, mapActions } from 'vuex';
 export default {
-  props: ['id', 'index', 'list'],
+  props: ['id', 'index', 'list','length'],
   data() {
     return {
       // isExAdded: false,
@@ -81,8 +81,8 @@ export default {
       this.descList.push(desc);
       console.log(this.meaningList);
     },
-    addDesc(e) {
-      const index = e + 1;
+    addDesc() {
+      const index = this.length ;
       const val = true;
       // this.descList.push(e);
       this.$emit('computeDescItem', { index, val });

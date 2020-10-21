@@ -19,5 +19,17 @@ export default {
   },
   computeExample ( {commit}, e ) {
     commit('SET_EX', e)
+  },
+  setACard({commit}, e) {
+    commit('SET_A_CARD', e);
+    
+  },
+  postACard({commit},e) {
+    console.log('postACard:', e);
+    axios
+      .post(apiUrl.postWords, e)
+        .then((data) => console.log(data))
+        .catch((err) => console.log(err))
+        commit();
   }
 }

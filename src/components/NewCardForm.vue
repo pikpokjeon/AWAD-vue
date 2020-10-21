@@ -9,7 +9,7 @@
         </div>
         <div class="form-inside">
           <div class="line">
-            <v-text-field label="Word" solo></v-text-field>
+            <v-text-field v-model="word" label="Word" solo ></v-text-field>
           </div>
           <div class="line">
             <v-text-field label="Transcription" solo></v-text-field>
@@ -19,13 +19,14 @@
               v-for="(el, index) in descList"
               :id="`desc_${index + 1}`"
               :key="`desc_${index + 1}`"
+              :length="descList.length"
               :index="index"
               :list="descList"
               @computeDescItem="computeDescToAdd"
             ></Meaning>
             <div class="my-2">
-              <v-btn color="error" dark large @click="!addmore">
-                Add more
+              <v-btn color="error" dark large @click="saveCard('submit')">
+                Submit
               </v-btn>
             </div>
           </div>
@@ -36,23 +37,30 @@
 </template>
 <script>
 import Meaning from './Meaning';
+import { mapState, mapActions } from 'vuex';
+
 export default {
-  props: ['card'],
+  // props: ['card'],
   data() {
     return {
       isCloseClicked: false,
-      descList: [1],
+      descList: [0,],
+      word:'',
     };
   },
   components: {
     Meaning,
   },
   computed: {
+    ...mapState(['cardList','card']),
+
     // computeEx() {
     // const example = document.getElementById('ex_1')
     // }
   },
   methods: {
+    ...mapActions(['setACard','postACard']),
+
     computeDescToAdd({ index, val }) {
       if (val) {
         this.descList.push(index);
@@ -64,7 +72,15 @@ export default {
     closeForm() {
       this.$emit('closeForm', this.isCloseClicked);
     },
+        saveCard(e) {
+          const id = this.cardList.length + 1 ;
+      const param = { id: id, status: e, theword: this.word} ;
+        this.setACard(param).then(this.postACard(this.card))
+      
+      // console.log(`${this.$refs.desc}-${index}`.value);
+    },
   },
+  
 };
 </script>
 <style lang="scss" scoped>
