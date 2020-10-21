@@ -1,79 +1,109 @@
 <template>
-<div>
-  <div  v-for="(desc, index) in descCount"
-        :key="`desc_${index + 1}`">
-  <div class="expandable"  
->
-    <div class="inputs">
-      <!-- <span>{{`${index + 1}.`}}</span> -->
-      <v-text-field label="Description" solo></v-text-field>
-     
+  <div>
+    <div :id="id">
+      <div class="expandable">
+        <div class="inputs">
+          <!-- <span>{{`${index + 1}.`}}</span> -->
+          <v-text-field
+            label="Description"
+            solo
+            :id="`desc${index}`"
+            @change="descToList(index)"
+          ></v-text-field>
+        </div>
+        <div class="icon-button-wrapper">
+          <v-icon
+            v-if="index == 0"
+            class="description"
+            @click="addDesc(index)"
+            aria-hidden="false"
+          >
+            mdi-plus-circle</v-icon
+          >
+          <v-icon
+            v-else
+            class="description"
+            @click="removeDesc()"
+            aria-hidden="false"
+          >
+            mdi-minus-circle</v-icon
+          >
+          <!-- <v-icon v-else class="description" @click="removeDesc()" aria-hidden="false"> mdi-minus-circle-outline</v-icon> -->
+        </div>
+      </div>
+      <Example
+        @addEx="expandEx"
+        @removeEx="removeEx"
+        :isFirst="isFirst"
+        :count="examples.length"
+        :id="`ex_${index}`"
+        :index="index"
+        :el="examples"
+      ></Example>
     </div>
-    <div class="icon-button-wrapper">
-      <v-icon v-if="index == 0" class="description" @click="addDesc()" aria-hidden="false">
-        mdi-plus-circle</v-icon
-      >     
-      <v-icon v-else class="description" @click="removeDesc()" aria-hidden="false"> mdi-minus-circle</v-icon>
-      <!-- <v-icon v-else class="description" @click="removeDesc()" aria-hidden="false"> mdi-minus-circle-outline</v-icon> -->
-    </div>
-  </div>
-   <Example  @addEx="expandEx" @removeEx="removeEx"  v-for="(example, index) in examples"
-    :added="isExAdded" :count="examples.length"
-    :id="example" :index="index" :key="`ex_${index}`"></Example>
-  </div>
   </div>
 </template>
 
 <script>
 import Example from './Example';
-// import {mapState} from 'vuex';
+import { mapState, mapActions } from 'vuex';
 export default {
+  props: ['id', 'index', 'list'],
   data() {
     return {
-      examples: ['s',],
-      descCount: ['s',],
-      addedDesc: false,
+      // isExAdded: false,
+      examples: ['s'],
+      // descList: ["s"],
     };
   },
   components: {
     Example,
   },
-  computed:{
-        isFirst(){
-      let val;
-      if(this.id == 's'){
-        val = true;
-      }else{
-        val = false;
-      }
+  computed: {
+    ...mapState(['card', 'meaning']),
+    isFirst() {
+      const val = this.list.length == 1 ? true : false;
       return val;
     },
-    isExAdded(){
-    if(this.examples.length > 1){
-      return true
-    }else{
-      return false
-    }
-
-    }
+    isExAdded() {
+      if (this.examples.length > 1) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
-  methods:{
-    addDesc(){
-      this.descCount.push(1);
+  methods: {
+    ...mapActions(['computeDescription']),
+    addMore(desc) {
+      this.descList.push(desc);
+      console.log(this.meaningList);
     },
-    removeDesc(){
-
+    addDesc(e) {
+      const index = e + 1;
+      const val = true;
+      // this.descList.push(e);
+      this.$emit('computeDescItem', { index, val });
     },
+    removeDesc() {},
     expandEx(e) {
-   
-        this.examples.push(e);
-     
+      this.examples.push(e);
     },
     removeEx(e) {
-        this.examples.splice(e,1);
-      
-    }
-  }
+      this.examples.splice(e, 1);
+    },
+    descToList(index) {
+      const newDesc = document.getElementById(`desc${index}`).value;
+      if (newDesc != '') {
+        const param = { index: index, status: 'add', description: newDesc };
+        this.computeDescription(param);
+      } else {
+        const param = { index: index, status: 'remove', description: newDesc };
+        this.computeDescription(param);
+      }
+      // console.log(`${this.$refs.desc}-${index}`.value);
+    },
+  },
 };
 </script>
 
@@ -81,15 +111,19 @@ export default {
 div {
   width: 100%;
 }
+.my-2 {
+  display: flex;
+  justify-content: center;
+}
 .expandable {
   display: flex;
   justify-content: space-between;
-   span{
-      padding-right: 5px;
-    }
+  span {
+    padding-right: 5px;
+  }
 
   .inputs {
-        display: flex;
+    display: flex;
     align-items: center;
   }
 

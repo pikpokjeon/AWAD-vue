@@ -4,10 +4,10 @@ export default {
     id:'',
     userId:'',
     theword:'',
-    transcription: '',
+    // transcription: '',
     tags: [],
     meanings: [],
-    created: '',
+    // created: '',
   },
   meaning: {
     description: '',

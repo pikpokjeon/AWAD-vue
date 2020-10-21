@@ -15,10 +15,19 @@
             <v-text-field label="Transcription" solo></v-text-field>
           </div>
           <div class="line">
-           
-              <Meaning></Meaning>
-              
-           
+            <Meaning
+              v-for="(el, index) in descList"
+              :id="`desc_${index + 1}`"
+              :key="`desc_${index + 1}`"
+              :index="index"
+              :list="descList"
+              @computeDescItem="computeDescToAdd"
+            ></Meaning>
+            <div class="my-2">
+              <v-btn color="error" dark large @click="!addmore">
+                Add more
+              </v-btn>
+            </div>
           </div>
         </div>
       </div>
@@ -32,7 +41,7 @@ export default {
   data() {
     return {
       isCloseClicked: false,
-
+      descList: [1],
     };
   },
   components: {
@@ -44,6 +53,14 @@ export default {
     // }
   },
   methods: {
+    computeDescToAdd({ index, val }) {
+      if (val) {
+        this.descList.push(index);
+        console.log('add :');
+      } else {
+        console.log('delete :');
+      }
+    },
     closeForm() {
       this.$emit('closeForm', this.isCloseClicked);
     },
@@ -56,54 +73,48 @@ section {
   justify-content: center;
 }
 .form-card {
-    background: white;
-    min-width: 650px;
-    z-index: 999;
-    top: 5vw;
-    position: absolute;
+  background: white;
+  min-width: 650px;
+  z-index: 999;
+  top: 5vw;
+  position: absolute;
 
-    .form-inside{
+  .form-inside {
     width: 100%;
     padding: 5vw;
 
+    .line {
+      .expandable {
+        // display: flex;
+        // justify-content: space-between;
 
-      .line{
+        .icon-button-wrapper {
+          display: flex;
+          flex-wrap: wrap;
+          width: 30px;
 
-        .expandable{
-    // display: flex;
-    // justify-content: space-between;
+          .v-icon {
+            padding: 0 0 15px 0;
+            cursor: pointer;
+            font-size: 30px;
+            color: #bccbce;
+          }
 
-    .icon-button-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    width: 30px;
-
-      .v-icon{
-
-    padding: 0 0 15px 0;
-    cursor: pointer;
-    font-size: 30px;
-    color: #bccbce;
-
-
-      }
-
-      .description-add{
+          .description-add {
             color: #84c8d6;
-      }
+          }
         }
       }
     }
-}
-.icon-button-wrapper {
-  display: flex;
-      justify-content: flex-end;
+  }
+  .icon-button-wrapper {
+    display: flex;
+    justify-content: flex-end;
 
-      .v-icon{
-            padding: 10px;
-            cursor: pointer;
-
-      }
-}
+    .v-icon {
+      padding: 10px;
+      cursor: pointer;
+    }
+  }
 }
 </style>

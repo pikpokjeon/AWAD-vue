@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="expandable" > 
+    <div class="expandable"  v-for="(example, index) in el" :key="`ex_${index}`"> 
       <!-- <span>{{`${index + 1})`}}</span> -->
       <v-text-field
       v-model="value"
@@ -9,10 +9,10 @@
       ></v-text-field>
     
     <div class="icon-button-wrapper">
-      <v-icon v-if="isFirst" class="description-add" @click="addEx()" aria-hidden="false">
+      <v-icon v-if="index == 0" class="description-add" @click="addEx()" aria-hidden="false">
         mdi-plus-circle-outline</v-icon
       >      
-      <v-icon v-else-if="added" @click="removeEx()" aria-hidden="false"> mdi-minus-circle-outline </v-icon>
+      <v-icon v-else @click="removeEx()" aria-hidden="false"> mdi-minus-circle-outline </v-icon>
     </div>
 </div>
   </div>
@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  props:['id', 'added','count','index'],
+  props:['id', 'isFirst','count','index','el'],
   data() {
     return {
       isAdded: false,
@@ -32,9 +32,9 @@ export default {
       const info = {idx:this.id, value: this.value};
       return info;
     },
-    isFirst(){
+    isFirstEx(){
       let val;
-      if(this.id == 's'){
+      if(this.index == 0){
         val = true;
       }else{
         val = false;

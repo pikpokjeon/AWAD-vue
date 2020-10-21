@@ -12,4 +12,9 @@ export default {
       })
       .catch( err => console.log(err))
   },
+
+  
+  computeDescription ( {commit}, e ) {
+    commit('SET_DESC', e)
+  }
 }
