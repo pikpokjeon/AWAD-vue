@@ -8,7 +8,9 @@ export default {
     console.log('SET_DESC:', data)
     
     if(data.status == 'add'){
-    // state.card.meanings.push( {state.meaning);
+    // state.meaning.description= data.description;
+    state.card.meanings[data.index] = {description: data.description, example:[]}
+    // state.card.meanings.push( state.meaning);
     // Vue.set(state.card.meanings, data.index, state.meaning);
 
   }else if(data.status == 'remove'){
@@ -17,7 +19,7 @@ export default {
   }else{
     return
   }
-    console.log(state.card.meanings);
+    console.log(state.card.meanings)
   
 
   }
