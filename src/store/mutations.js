@@ -36,15 +36,13 @@ export default {
   }else{
     return
   }
-    console.log(state.card.meanings)
+ 
   
 
   },
   SET_A_CARD(state, data) {
     if(data.status == 'submit') 
     {
-      state.card.id = data.id;
-      state.card.userId = data.id;
       state.card.theword = data.theword;
     }
   }

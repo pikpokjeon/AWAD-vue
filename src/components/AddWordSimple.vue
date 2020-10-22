@@ -5,7 +5,8 @@
       sm="6"
     >
     <h2>Any new word?</h2>
-    <v-text-field label="Learn something new?" 
+    <v-text-field 
+    v-model="newWord"
     solo
     placeholder="New Word"></v-text-field>
     </v-col>
@@ -19,7 +20,7 @@
   elevation="3"
   large
 >Add</v-btn>
-<NewCardForm class="form" v-if="isOpenForm" @closeForm="checkIfClose">
+<NewCardForm class="form" v-if="isOpenForm" @closeForm="checkIfClose" :newWord="newWord">
 
 </NewCardForm>
 </v-col>
@@ -34,6 +35,7 @@ export default {
   data(){
     return{
       isOpenForm:false,
+      newWord:'',
     }
   },
   methods:{

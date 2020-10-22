@@ -9,10 +9,10 @@
         </div>
         <div class="form-inside">
           <div class="line">
-            <v-text-field v-model="word" label="Word" solo ></v-text-field>
+            <v-text-field v-model="newWord"  label="Word" solo ></v-text-field>
           </div>
           <div class="line">
-            <v-text-field label="Transcription" solo></v-text-field>
+            <v-text-field label="#Tags #As #You #Want" solo></v-text-field>
           </div>
           <div class="line">
             <Meaning
@@ -40,7 +40,7 @@ import Meaning from './Meaning';
 import { mapState, mapActions } from 'vuex';
 
 export default {
-  // props: ['card'],
+  props: ['newWord'],
   data() {
     return {
       isCloseClicked: false,
@@ -53,6 +53,10 @@ export default {
   },
   computed: {
     ...mapState(['cardList','card']),
+    theWord(){
+      const word = this.newWord ? this.newWord : this.word;
+      return word;
+    }
 
     // computeEx() {
     // const example = document.getElementById('ex_1')
@@ -73,8 +77,7 @@ export default {
       this.$emit('closeForm', this.isCloseClicked);
     },
         saveCard(e) {
-          const id = this.cardList.length + 1 ;
-      const param = { id: id, status: e, theword: this.word} ;
+      const param = { status: e, theword: this.theWord} ;
         this.setACard(param).then(this.postACard(this.card))
       
       // console.log(`${this.$refs.desc}-${index}`.value);

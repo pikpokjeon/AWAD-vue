@@ -1,8 +1,7 @@
 export default {
   cardList: [],
   card: {
-    id:'',
-    userId:'',
+    userId:'121757789',
     theword:'',
     // transcription: '',
     tags: [],
