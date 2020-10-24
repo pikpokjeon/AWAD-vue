@@ -38,6 +38,8 @@
 <script>
 import Meaning from './Meaning';
 import { mapState, mapActions } from 'vuex';
+import axios from 'axios'
+import {apiUrl} from '../api/index'
 
 export default {
   data() {
@@ -75,12 +77,29 @@ export default {
     closeForm() {
       this.$emit('closeForm', this.isCloseClicked);
     },
-        saveCard(e) {
+    async saveCard(e) {
       const param = { status: e, theword: this.theWord} ;
-        this.setACard(param).then(this.postACard(this.card))
+      await this.setACard(param);
+      const postACard = await this.postACard(this.card);
       
       // console.log(`${this.$refs.desc}-${index}`.value);
     },
+    async postACard(e) {
+      const result = await axios.post(apiUrl.postWords, e);
+      console.log('postACard result :', result);
+      if(result.status == 201){
+        this.$emit('SUCCESS', true)
+      }
+    }
+    //     saveCard(e) {
+    //   const param = { status: e, theword: this.theWord} ;
+    //     this.setACard(param)
+    //       .then(this.postACard(this.card))
+    //       .then( result => console.log('saveCard result :',result))
+    //       .catch(e => console.log('saveCard error :', e))
+      
+    //   // console.log(`${this.$refs.desc}-${index}`.value);
+    // },
 
   },
   mounted(){ //html이 랜더링 된 시점에 보여줘야 해서 created가 아닌 mounted에
