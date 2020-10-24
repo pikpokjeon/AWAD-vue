@@ -77,18 +77,23 @@ export default {
     closeForm() {
       this.$emit('closeForm', this.isCloseClicked);
     },
-    async saveCard(e) {
+    async saveCard(e){
       const param = { status: e, theword: this.theWord} ;
       await this.setACard(param);
-      const postACard = await this.postACard(this.card);
+      await this.postACard(this.card);
       
       // console.log(`${this.$refs.desc}-${index}`.value);
     },
     async postACard(e) {
       const result = await axios.post(apiUrl.postWords, e);
       console.log('postACard result :', result);
-      if(result.status == 201){
-        this.$emit('SUCCESS', true)
+      if(result.status == '201') 
+      {
+        this.$emit('postCardSuccessful', true)
+      }
+      else
+      {
+        console.log('postACard result status is not 201')
       }
     }
     //     saveCard(e) {

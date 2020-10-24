@@ -21,7 +21,7 @@
   elevation="3"
   large
 >Add</v-btn>
-<NewCardForm class="form" v-if="isOpenForm" @closeForm="checkIfClose">
+<NewCardForm class="form" v-if="isOpenForm" @closeForm="checkIfClose" @postCardSuccessful="cardPostResult">
 
 </NewCardForm>
 </v-col>
@@ -52,6 +52,10 @@ export default {
     },
     setInitNewWord(){
       this.computeInitNewWord(this.initNewWord);
+    },
+    cardPostResult(e) {
+      console.log('cardPostResult : ', e);
+      e ? this.isOpenForm = false : true ;
     }
   }
   
