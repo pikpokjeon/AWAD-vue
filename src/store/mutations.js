@@ -4,6 +4,9 @@ export default {
     console.log('저장된 리스트', state.cardList);
   },
 
+  SET_INIT_NEWWORD(state,data) {
+    state.card.theword = data;
+  },
   SET_DESC(state, data) {
     console.log('SET_DESC:', data)
     

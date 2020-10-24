@@ -12,7 +12,9 @@ export default {
       })
       .catch( err => console.log(err))
   },
-
+  computeInitNewWord ({commit},e ) {
+    commit('SET_INIT_NEWWORD', e);
+  },
 
   computeDescription ( {commit}, e ) {
     commit('SET_DESC', e)

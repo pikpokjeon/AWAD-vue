@@ -9,7 +9,7 @@
         </div>
         <div class="form-inside">
           <div class="line">
-            <v-text-field v-model="newWord"  label="Word" solo ></v-text-field>
+            <v-text-field  :value="word" label="Word" solo ></v-text-field>
           </div>
           <div class="line">
             <v-text-field label="#Tags #As #You #Want" solo></v-text-field>
@@ -40,7 +40,6 @@ import Meaning from './Meaning';
 import { mapState, mapActions } from 'vuex';
 
 export default {
-  props: ['newWord'],
   data() {
     return {
       isCloseClicked: false,
@@ -82,6 +81,10 @@ export default {
       
       // console.log(`${this.$refs.desc}-${index}`.value);
     },
+    created(){
+      this.word = this.card.theword;
+      console.log('this.word : ',this.word)
+    }
   },
   
 };

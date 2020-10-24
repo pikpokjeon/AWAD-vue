@@ -6,7 +6,8 @@
     >
     <h2>Any new word?</h2>
     <v-text-field 
-    v-model="newWord"
+    @click="setInitNewWord()"
+    v-model="initNewWord"
     solo
     placeholder="New Word"></v-text-field>
     </v-col>
@@ -20,7 +21,7 @@
   elevation="3"
   large
 >Add</v-btn>
-<NewCardForm class="form" v-if="isOpenForm" @closeForm="checkIfClose" :newWord="newWord">
+<NewCardForm class="form" v-if="isOpenForm" @closeForm="checkIfClose">
 
 </NewCardForm>
 </v-col>
@@ -28,6 +29,7 @@
 </template>
 <script>
 import NewCardForm from './NewCardForm';
+import { mapActions } from 'vuex';
 export default {
   components:{
     NewCardForm,
@@ -35,16 +37,21 @@ export default {
   data(){
     return{
       isOpenForm:false,
-      newWord:'',
+      initNewWord: '',
     }
   },
   methods:{
+    ...mapActions(['computeInitNewWord']),
+
     addWord() {
       this.isOpenForm = !this.isOpenForm;
     },
     checkIfClose(e) {
       this.isOpenForm = e ;
 
+    },
+    setInitNewWord(){
+      this.computeInitNewWord(this.initNewWord);
     }
   }
   
