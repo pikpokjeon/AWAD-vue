@@ -54,14 +54,7 @@ export default {
   },
   computed: {
     ...mapState(['cardList','card']),
-    theWord(){
-      const word = this.newWord ? this.newWord : this.word;
-      return word;
-    }
 
-    // computeEx() {
-    // const example = document.getElementById('ex_1')
-    // }
   },
   methods: {
     ...mapActions(['setACard','postACard']),
@@ -78,33 +71,20 @@ export default {
       this.$emit('closeForm', this.isCloseClicked);
     },
     async saveCard(e){
-      const param = { status: e, theword: this.theWord} ;
+      const param = { status: e, theword: this.word} ;
       await this.setACard(param);
       await this.postACard(this.card);
       
-      // console.log(`${this.$refs.desc}-${index}`.value);
     },
     async postACard(e) {
       const result = await axios.post(apiUrl.postWords, e);
       console.log('postACard result :', result);
-      if(result.status == '201') 
-      {
+      if(result.status == '201') {
         this.$emit('postCardSuccessful', true)
-      }
-      else
-      {
+      } else {
         console.log('postACard result status is not 201')
       }
     }
-    //     saveCard(e) {
-    //   const param = { status: e, theword: this.theWord} ;
-    //     this.setACard(param)
-    //       .then(this.postACard(this.card))
-    //       .then( result => console.log('saveCard result :',result))
-    //       .catch(e => console.log('saveCard error :', e))
-      
-    //   // console.log(`${this.$refs.desc}-${index}`.value);
-    // },
 
   },
   mounted(){ //html이 랜더링 된 시점에 보여줘야 해서 created가 아닌 mounted에
