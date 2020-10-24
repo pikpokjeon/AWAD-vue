@@ -9,7 +9,7 @@
         </div>
         <div class="form-inside">
           <div class="line">
-            <v-text-field  :value="word" label="Word" solo ></v-text-field>
+            <v-text-field  v-model="word" label="Word" solo ></v-text-field>
           </div>
           <div class="line">
             <v-text-field label="#Tags #As #You #Want" solo></v-text-field>
@@ -81,11 +81,12 @@ export default {
       
       // console.log(`${this.$refs.desc}-${index}`.value);
     },
-    created(){
+
+  },
+  mounted(){ //html이 랜더링 된 시점에 보여줘야 해서 created가 아닌 mounted에
       this.word = this.card.theword;
       console.log('this.word : ',this.word)
     }
-  },
   
 };
 </script>
