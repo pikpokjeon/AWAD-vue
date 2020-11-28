@@ -11,6 +11,8 @@
 =======- 
 ## Skillsets
 - Vue 2.XX
+## Full document for BE/ FE development
+Link : [HackMD Docment][https://hackmd.io/wvgZqz29RnqURDnIBkRiFA?view]
 
 ## Project setup
 ```
