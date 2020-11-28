@@ -9,7 +9,8 @@
 
 
 =======- 
-# awad
+## Skillsets
+- Vue 2.XX
 
 ## Project setup
 ```
