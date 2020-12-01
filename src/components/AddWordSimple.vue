@@ -6,7 +6,6 @@
     >
     <h2>Any new word?</h2>
     <v-text-field 
-    @click="setInitNewWord()"
     v-model="initNewWord"
     solo
     placeholder="New Word"></v-text-field>
@@ -45,13 +44,14 @@ export default {
 
     addWord() {
       this.isOpenForm = !this.isOpenForm;
+      this.computeInitNewWord(this.initNewWord)
     },
     checkIfClose(e) {
       this.isOpenForm = e ;
 
     },
     setInitNewWord(){
-      this.computeInitNewWord(this.initNewWord);
+      // this.computeInitNewWord(this.initNewWord);
     },
     cardPostResult(e) {
       console.log('cardPostResult : ', e);
