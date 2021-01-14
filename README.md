@@ -13,27 +13,4 @@
 - Vue 2.XX
 ## Full document for BE/ FE development
 Link : [HackMD Docment](https://hackmd.io/wvgZqz29RnqURDnIBkRiFA?view)
-
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
+https://pikpokjeon.github.io/
